@@ -11,11 +11,12 @@ def chat():
     name = data.get("name", "Resonance")
     task = data.get("task", "answering all kinds of questions")
     prompt = data.get("prompt", "")
+    history = data.get("history", [])  # <-- added line
 
     if not prompt:
         return jsonify({"error": "Prompt is required"}), 400
 
-    response = generate_response(name, task, prompt)
+    response = generate_response(name, task, prompt, history)  # <-- updated call
     return jsonify({"response": response})
 
 if __name__ == "__main__":
